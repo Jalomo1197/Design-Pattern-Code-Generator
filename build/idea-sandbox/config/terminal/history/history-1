@@ -1,0 +1,499 @@
+git commit -m "threading"
+git push
+git add .
+git commit -m "threading"
+git push
+git add .
+git commit -m "threading"
+git push
+git add .
+git commit -m "threading"
+git push
+git add .
+git commit -m "threading"
+git push
+make
+make
+make
+make clean
+git add .
+git commit -m "listing"
+git push
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+clear
+make
+clear
+make
+make
+make
+make
+clear
+make
+make
+make
+clear
+make
+clear
+make
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+make
+./homework5 9102 WWW
+./format_string alex thrones
+./homework5 9102 WWW
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+ls
+ssh ajalom2@systems1.cs.uic.edu
+git pull
+ls
+ssh ajalom2@systems1.cs.uic.edu
+s
+ssh ajalom2@systems1.cs.uic.edu
+ssh ajalom2@systems1.cs.uic.edu
+ls
+ssh ajalom2@systems1.cs.uic.edu
+ssh ajalom2@systems1.cs.uic.edu -o ServerAliveInterval=100
+ssh ajalom2@systems1.cs.uic.edu -o ServerAliveInterval=100
+ssh ajalom2@systems1.cs.uic.edu -o ServerAliveInterval=100
+cd desktop
+ls
+cd CS361
+ls
+cd homework-5-Jalomo1197
+ls
+git add .
+git commit "last day :("
+git commit "last day"
+git commit -m "last day"
+git push
+git add .
+git commit -m "klsjdfn"
+git push
+make
+git commit -m "klsjdfn"
+git add .
+git commit -m "klsjdfn"
+git push
+./homework5 9102 WWW
+make
+make
+./homework5 9102 WWW
+git add .
+git commit -m "klsjdfn"
+git push
+./homework5 9102 WWW
+make
+git add .
+git commit -m "klsjdfn"
+git push
+./homework5 9102 WWW
+make
+git add .
+git commit -m "klsjdfn"
+git push
+make
+./homework5 9102 WWW
+git rm 
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+git add .
+git commit -m "klsjdfn"
+git push
+make
+git add .
+git commit -m "klsjdfn"
+git push
+./homework5 9102 WWW
+git pull
+ls
+rm format_string
+rm format_string.dSYM
+rm -r format_string.dSYM
+rm homework5
+rm -r homework5.dSYM
+rm thread_example
+rm -r thread_example.dSYM
+ls
+git add .
+git commit -m "laiusgdfhlasuhflasiugh"
+git push
+make
+./homework5 9102 WWW
+make
+make
+git add .
+git commit -m "laiusgdfhlasuhflasiugh"
+git push
+make clean
+ls
+rm -r format_string.dSYM
+rm -r homework5.dSYM
+rm -r thread_example.dSYM
+git add .
+git commit -m "please work"
+git push
+make
+./homework5 9102 WWW
+make
+make clean 
+ls
+rm -r format_string.dSYM
+rm -r homework5.dSYM
+rm -r thread_example.dSYM
+ls
+git add .
+git commit -m "lejkdfhvlskdjfhv"
+git push
+git add .
+git commit -m "lejkdfhvlskdjfhv"
+git push
+make
+./homework5 9102 WWW
+make
+make
+git add .
+git commit -m "lejkdfhvlskdjfhv"
+git push
+make clean
+ls
+rm -r format_string.dSYM
+rm -r homework5.dSYM
+rm -r thread_example.dSYM
+ls
+git add .
+git commit -m "crying"
+git push
+git add .
+git commit -m "crying"
+git push
+make
+./homework5 9102 WWW
+./homework5 9102 WWW
+./homework5 9102 WWW
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make
+./homework5 9102 WWW
+make clean
+ls
+rm -r format_string.dSYM
+rm -r homework5.dSYM
+rm -r thread_example.dSYM
+ls
+git add . 
+git commit -m "lsiudfhs"
+git push
+cd desktop
+ls
+cd CS361
+ls
+cd homework-5-Jalomo1197
+ls
+make
+./homework5 9102 WWW
+cd desktop/CS342/CS342_Project4
+cd P3Client
+ls
+pwd
+mvn compile
+mvn compile
+mvn compile
+mvn compile
+mvn compile
+mvn compile
+mvn compile
+mvn compile
+mvn compile
+mvn compile
+mvn compile
+cd desktop/CS361
+ls
+git clone git@github.com:cs361-f19/homework-6-Jalomo1197.git
+ls
+cd homework-6-Jalomo1197
+make
+./hw6
+ssh ajalom2@systems1.cs.uic.edu -o ServerAliveInterval=100
+ls
+cd desktop/CS361
+l
+ls
+cd homework-6-Jalomo1197
+ls
+make
+clear
+make
+clear
+make
+make
+make
+make clean
+git add .
+git commit -m "changing global vars"
+git push
+git add .
+git commit -m "changing global vars"
+git push
+ls
+cd desktop
+ls
+cd CS342
+ls
+mkdir HW5
+cd HW5
+ls
+git clone https://github.com/davidmickev/test.git
+ls
+ls
+ssh ajalom2@systems1.cs.uic.edu -o ServerAliveInterval=100
+ls
+ls
+ssh ajalom2@systems1.cs.uic.edu -o ServerAliveInterval=100
+ls
+ssh ajalom2@systems1.cs.uic.edu -o ServerAliveInterval=100
+ls
+cd desktop/CS342/CS342_Project5/P5Client
+pwd
+mvn compile
+CS342/CS342_Project5/P5Serevr
+CS342/CS342_Project5/P5Servr
+CS342/CS342_Project5/P5Server
+CS342/CS342_Project5/P5Sever
+cd CS342/CS342_Project5/P5Sever
+cd CS342/CS342_Project5/P5Server
+ls
+cd desktop/CS342/CS342_Project5
+ls
+cd P5Server
+ls
+mvn compile
+mvn compile
+mvn compile
+mvn compile
+mvn clean
+mvn compile
+mvn compile
+mvn clean
+mvn clean
+mvn compile
+mvn clean
+mvn compile
+mvn clean
+java
+java -version
+which java
+JAVA_HOME=/Library/Java/Home
+echo $JAVA_HOME
+ls
+cd Desktop
+ls
+mkdir OO_Languages&Environments
+mk dir OO_Languages&Environments
+mkdir OO_Languages&Environments
+ls
+ls
+clean
+clear
+ls
+cd OO_Languages
+ls
+ls
+git clone git@bitbucket.org:cs474_spring2020/homework1.git
+ls
+cd desktop
+ls
+mkdir foo-build
+cd foo-build
+touch build.sbt
+sbt
+brew install scala
+brew install sbt
+touch build.sbt
+sbt
+sbt
+gradle init --type scala-library
+gradle init --type scala-library
+brew install gradle
+gr init --type scala-library
+gradle init --type scala-library
+ls
+ls
+cd ..
+ls
+cd CS342
+ls
+cd HelloScala
+gradle init --type scala-library
+ls
+cd Desktop
+ls
+cd OO_Languages
+ls
+cd ..
+ls
+cd Object-Orientated_Languages
+ls
+git clone https://Jalomo1197@bitbucket.org/cs474_spring2020/homework1.git
+cd desktop
+ls
+cd Object_Orientated_L&E
+ls
+cd Object_Orientated_L&E
+cd ..
+cd Desktop
+ls
+cd Object_Orientated_L&E
+ls
+cd Object_Orientated_LandE
+ls
+git clone https://Jalomo1197@bitbucket.org/cs474_spring2020/homework1.git
+ls
+cd homework1
+ls
+ls
+gradle init --type java-library
+ls
+cd desktop
+ls
+cd ObjectOrientated_languages
+ls
+git init
+ls
+ls
+ls
+cd desktop/CS474
+ls
+git clone https://Jalomo1197@bitbucket.org/cs474_spring2020/homework1.git
+donet
+dotnet --list-sdks
+dotnet
+cd desktop
+ls
+cd F#
+ls
+cd InClassExamples
+ls
+cd ..
+ls
+rm InClassExamples
+rm -r InClassExamples
+ls
+dotnet new console -lang F# -o InClass
+ls
+cd InClass
+ls
+cd Desktop
+ls
+cd CS494
+ls
+git clone https://github.com/cs474-uic/a0-Jalomo1197
+ls
+git clone https://github.com/cs474-uic/cs494-s20-a2-Jalomo1197
+sudo apt-get install fsharp
+ls
+cs desktop/F#
+cd desktop/F#
+ls
+dotnet new console -lang F# -o Homework07
+l
+ls
+ls
+cd Homework07
+dotnet build
+dotnet run
+dotnet build
+dotnet build
+dotnet build
+dotnet build
+dotnet build
+dotnet build
+dotnet build
+dotnet build
+dotnet build
+dotnet run
+dotnet build
+dotnet run
+dotnet build
+dotnet run
+dotnet build
+dotnet run
+dotnet run
+dotnet run
+dotnet run
+dotnet build
+dotnet build
+dotnet run

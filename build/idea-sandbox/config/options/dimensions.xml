@@ -1,0 +1,12 @@
+<application>
+  <component name="DimensionService">
+    <location key="#Plugins.0.0.1440.900" x="320" y="54" />
+    <location key="new project wizard.0.0.1440.900" x="114" y="0" />
+    <location key="WELCOME_SCREEN.0.0.1440.900" x="719" y="387" />
+    <location key="com.intellij.ide.util.TipDialog.0.0.1440.900" x="320" y="284" />
+    <location key="ProcessPopupWindow.0.0.1440.900" x="842" y="760" />
+    <location key="search.everywhere.popup.0.0.1440.900" x="385" y="206" />
+    <size key="ProcessPopupWindow.0.0.1440.900" width="400" height="117" />
+    <size key="search.everywhere.popup.0.0.1440.900" width="670" height="676" />
+  </component>
+</application>

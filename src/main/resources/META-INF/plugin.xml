@@ -1,0 +1,33 @@
+<idea-plugin>
+    <!--  Unique id for this plugin. Must stay constant for the life of the plugin.  -->
+    <id>CodeGenerator.untitled</id>
+
+    <!-- Text to display as name on Preferences/Settings | Plugin page  -->
+    <name>Design Pattern Program Generator</name>
+
+    <!-- The version of this plugin -->
+    <version>3.0.0</version>
+
+    <vendor email="alexisjalomo1197@gmail.com" url="http://www.linkedin.com/in/AlexisJalomo">Jalomo Tools</vendor>
+
+    <description>
+    This is a tool use to generate code for users.
+    </description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products -->
+    <depends>com.intellij.modules.lang</depends>
+
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <toolWindow id="Code Generator" icon="/META-INF/icon2.png" anchor="right" factoryClass="tool.MyToolWindowFactory">
+        </toolWindow>
+    </extensions>
+
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
