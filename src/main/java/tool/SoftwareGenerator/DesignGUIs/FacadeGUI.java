@@ -1,6 +1,7 @@
 package tool.SoftwareGenerator.DesignGUIs;
 
 import tool.MyToolWindow;
+import tool.SoftwareGenerator.SafeCheck;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,16 +25,23 @@ public class FacadeGUI {
     public static ArrayList<String> subSystem_classes = new ArrayList<>();
 
 
+    //package
+    public static JTextField packageName = new JTextField();
+
     static{
         // ************ Setting sizes and layouts ***************
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-        facade_name.setMaximumSize(new Dimension(600, 200));
-        new_field.setMaximumSize(new Dimension(600, 200));
-        new_method.setMaximumSize(new Dimension(600, 200));
-        new_subSystem.setMaximumSize(new Dimension(600, 200));
+        facade_name.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        new_field.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        new_method.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        new_subSystem.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        packageName.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
 
 
         // ************ Getting names of related Classes/Interfaces ***************
+        panel.add(new JLabel("\nName of package:*\n")).setFont(new Font("Courier New", Font.ITALIC, 14));
+        panel.add(packageName);
+
         panel.add(new JLabel("Name of the facade class:")).setFont(new Font("Courier New", Font.ITALIC, 14));
         panel.add(facade_name);
 
@@ -51,26 +59,16 @@ public class FacadeGUI {
 
         add_field.addActionListener(e -> {
             String field = new_field.getText();
-            new_field.setText("");
-
-            if (field.equals("")){
-                System.out.println("invalid entry of field");
-            }
-            else{
-                //validate??
+            if (SafeCheck.validField(field)){
+                new_field.setText("");
                 facade_fields.add(field);
             }
         });
 
         add_method.addActionListener(e -> {
             String method = new_method.getText();
-            new_method.setText("");
-
-            if (method.equals("")){
-                System.out.println("invalid entry of field");
-            }
-            else{
-                //validate??
+            if (SafeCheck.validMethod(method)){
+                new_method.setText("");
                 facade_methods.add(method);
             }
         });
@@ -81,15 +79,10 @@ public class FacadeGUI {
         panel.add(new_subSystem);
         panel.add(add_subSystem);
 
-        add_field.addActionListener(e -> {
+        add_subSystem.addActionListener(e -> {
             String subSystem = new_subSystem.getText();
-            new_subSystem.setText("");
-
-            if (subSystem.equals("")){
-                System.out.println("invalid entry of field");
-            }
-            else{
-                //validate??
+            if(SafeCheck.validName(subSystem)){
+                new_subSystem.setText("");
                 subSystem_classes.add(subSystem);
             }
         });
@@ -97,8 +90,16 @@ public class FacadeGUI {
         //**************************   Generate button   **************************
         panel.add(generate);
         generate.addActionListener(e -> {
-            //TODO: validate input before calling factory
-            MyToolWindow.designFactory.getDesign("Facade");
+            //validate first
+            ArrayList<String> names = new ArrayList<>();
+            names.add(facade_name.getText());
+
+            if (SafeCheck.validPackageName(packageName.getText()) && SafeCheck.validInterfacesAndClasses(names)) {
+                //disable fields ? ?
+                MyToolWindow.designFactory.getDesign("Facade", packageName.getText());
+                //enable fields
+                //clear fields
+            }
         });
         //*************************************************************************
     }

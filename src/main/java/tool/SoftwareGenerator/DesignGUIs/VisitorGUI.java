@@ -1,6 +1,7 @@
 package tool.SoftwareGenerator.DesignGUIs;
 
 import tool.MyToolWindow;
+import tool.SoftwareGenerator.SafeCheck;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,13 +21,19 @@ public class VisitorGUI {
     public static ArrayList<String> classes = new ArrayList<>();
     public static ArrayList<String> methods = new ArrayList<>();
 
+    //package
+    public static JTextField packageName = new JTextField();
 
     static{
         // ************ Setting sizes and layouts ***************
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-        visitor_name.setMaximumSize(new Dimension(600, 200));
-        new_method.setMaximumSize(new Dimension(600, 200));
-        new_class.setMaximumSize(new Dimension(600, 200));
+        visitor_name.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        new_method.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        new_class.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        packageName.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+
+        panel.add(new JLabel("\nName of package:*\n")).setFont(new Font("Courier New", Font.ITALIC, 14));
+        panel.add(packageName);
 
 
         panel.add(new JLabel("Name of the visitor interface:")).setFont(new Font("Courier New", Font.ITALIC, 14));
@@ -39,12 +46,8 @@ public class VisitorGUI {
         panel.add(add_class);
         add_class.addActionListener(e -> {
             String Class = new_class.getText();
-            new_class.setText("");
-            if (Class.equals("")){
-                System.out.println("invalid entry of field");
-            }
-            else{
-                //validate with split??
+            if (SafeCheck.validName(Class)){
+                new_class.setText("");
                 classes.add(Class);
             }
         });
@@ -52,8 +55,16 @@ public class VisitorGUI {
         //Generate button
         panel.add(generate);
         generate.addActionListener(e -> {
-            //validate first!!!
-            MyToolWindow.designFactory.getDesign("Visitor");
+            //validate first
+            ArrayList<String> names = new ArrayList<>();
+            names.add(visitor_name.getText());
+
+            if (SafeCheck.validPackageName(packageName.getText()) && SafeCheck.validInterfacesAndClasses(names)) {
+                //disable fields ? ?
+                MyToolWindow.designFactory.getDesign("Visitor", packageName.getText());
+                //enable fields
+                //clear fields
+            }
         });
     }
 }

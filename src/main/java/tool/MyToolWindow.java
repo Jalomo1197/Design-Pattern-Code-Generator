@@ -3,9 +3,11 @@ package tool;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.wm.ToolWindow;
+import com.intellij.ui.JBColor;
 import javafx.scene.layout.Pane;
 import tool.SoftwareGenerator.DesignGUIs.*;
 import tool.SoftwareGenerator.SoftwareDesignFactory;
+import tool.SoftwareGenerator.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,32 +21,30 @@ public class MyToolWindow {
 
     //contents
     private JPanel container = new JPanel();
-    private JPanel myToolWindowContent = new JPanel();
     private JPanel currentPanel = new JPanel(); //just for remove not to throw nullExecption
     private JLabel Title = new JLabel("Design Pattern Program Generator\n");
-    private JButton generate = new JButton("Generate");
-    private String[] designs = new String[] {"Abstract Factory", "Builder",
-            "Chain", "Facade", "Factory", "Mediator", "Template", "Visitor"};
+    public static JLabel Error = new JLabel("\n");
+    private String[] designs = new String[] {"Abstract Factory", "Builder", "Chain", "Facade", "Factory", "Mediator", "Template", "Visitor"};
     private ComboBox<String> designList = new ComboBox<>(designs);
-   // private Project project;
-    private String projectBaseDiretory;
-    private File dir;
+
+
+    static public Project project;
 
     public MyToolWindow(ToolWindow toolWindow, final Project project){
         //Getting root directory of project;
-        projectBaseDiretory = project.getBasePath();
-        designFactory = new SoftwareDesignFactory(projectBaseDiretory);
-
+        MyToolWindow.project = project;
+        designFactory = new SoftwareDesignFactory();
         createGUI();
         createListeners();
     }
 
 
-    void createGUI(){
-
-        Title.setFont(new Font("Courier New", Font.BOLD, 18));
+    private void createGUI(){
+        Title.setFont(new Font("Courier New", Font.BOLD, 16));
+        Error.setFont(new Font("Courier New", Font.BOLD, 14));
+        designList.setMaximumSize(new Dimension(260, 40));
         container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
-        container.add(myToolWindowContent);
+        container.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JPanel cur = AbstractFactoryGUI.panel;
         cur = BuilderGUI.panel;
@@ -55,13 +55,15 @@ public class MyToolWindow {
         cur = TemplateGUI.panel;
         cur =MediatorGUI.panel;
 
-        myToolWindowContent.add(Title);
-        myToolWindowContent.add(designList);
-        myToolWindowContent.setMaximumSize(new Dimension(750, 500));
+        container.add(Title);
+        container.add(designList);
+        container.add(Error);
+        designList.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         container.add(( currentPanel = AbstractFactoryGUI.panel));
     }
 
-    void createListeners(){
+    private void createListeners(){
         // designList box Listener
         ActionListener designList_listener = event -> {
             container.remove(currentPanel);
@@ -99,6 +101,15 @@ public class MyToolWindow {
         designList.addActionListener(designList_listener);
     }
 
+    public static void ErrorMessage(String msg){
+        Error.setText(msg);
+        Error.updateUI();
+    }
+
+    public static void clearError(){
+        Error.setText("");
+        Error.updateUI();
+    }
 
     public JPanel getContent() {
         return container;

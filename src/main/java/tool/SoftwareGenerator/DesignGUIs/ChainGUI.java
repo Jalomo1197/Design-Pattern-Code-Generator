@@ -1,6 +1,7 @@
 package tool.SoftwareGenerator.DesignGUIs;
 
 import tool.MyToolWindow;
+import tool.SoftwareGenerator.SafeCheck;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,15 +26,22 @@ public class ChainGUI {
     public static ArrayList<String> methods = new ArrayList<>();
 
 
+    //package
+    public static JTextField packageName = new JTextField();
+
     static{
         // ************ Setting sizes and layouts ***************
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-        new_handler.setMaximumSize(new Dimension(600, 200));
-        handler_name.setMaximumSize(new Dimension(600, 200));
-        object_name.setMaximumSize(new Dimension(600, 200));
+        new_handler.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        handler_name.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        object_name.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        packageName.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
 
         //*************************************************************************
         // ************ Getting names of related Classes/Interfaces ***************
+        panel.add(new JLabel("\nName of package:*\n")).setFont(new Font("Courier New", Font.ITALIC, 14));
+        panel.add(packageName);
+
         panel.add(new JLabel("Name of the handler interface:")).setFont(new Font("Courier New", Font.ITALIC, 14));
         panel.add(handler_name);
 
@@ -49,13 +57,8 @@ public class ChainGUI {
         panel.add(add_handler);
         add_handler.addActionListener(e ->{
             String handler = new_handler.getText();
-            new_handler.setText("");
-
-            if (handler.equals("")){
-                System.out.println("invalid entry of field");
-            }
-            else{
-                //validate??
+            if(SafeCheck.validName(handler)){
+                new_handler.setText("");
                 handlers.add(handler);
             }
         });
@@ -64,8 +67,17 @@ public class ChainGUI {
         //**************************   Generate button   **************************
         panel.add(generate);
         generate.addActionListener(e -> {
-            //TODO: validate input before calling factory
-            MyToolWindow.designFactory.getDesign("Chain");
+            //validate first
+            ArrayList<String> names = new ArrayList<>();
+            names.add(handler_name.getText());
+            names.add(object_name.getText());
+
+            if (SafeCheck.validPackageName(packageName.getText()) && SafeCheck.validInterfacesAndClasses(names)){
+                //disable fields ? ?
+                MyToolWindow.designFactory.getDesign("Chain", packageName.getText());
+                //enable fields
+                //clear fields
+            }
         });
         //*************************************************************************
     }

@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Visitor implements DesignPattern {
-    public static int number = 0;
     private CompilationUnit Visitor;
     private ClassOrInterfaceDeclaration visitorInterface;
     private List<MethodDeclaration> visitorMethods = new ArrayList<>();

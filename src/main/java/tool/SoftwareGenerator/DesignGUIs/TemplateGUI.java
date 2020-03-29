@@ -1,6 +1,7 @@
 package tool.SoftwareGenerator.DesignGUIs;
 
 import tool.MyToolWindow;
+import tool.SoftwareGenerator.SafeCheck;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,13 +25,20 @@ public class TemplateGUI {
     public static ArrayList<String> methodsAbstract = new ArrayList<>();
 
 
+    //package
+    public static JTextField packageName = new JTextField();
+
     static{
         // ************ Setting sizes and layouts ***************
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-        template_name.setMaximumSize(new Dimension(600, 200));
-        new_methodAbstract.setMaximumSize(new Dimension(600, 200));
-        new_method.setMaximumSize(new Dimension(600, 200));
-        new_class.setMaximumSize(new Dimension(600, 200));
+        template_name.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        new_methodAbstract.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        new_method.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        new_class.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        packageName.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+
+        panel.add(new JLabel("\nName of package:*\n")).setFont(new Font("Courier New", Font.ITALIC, 14));
+        panel.add(packageName);
 
         panel.add(new JLabel("Name of the abstract template class:")).setFont(new Font("Courier New", Font.ITALIC, 14));
         panel.add(template_name);
@@ -43,12 +51,8 @@ public class TemplateGUI {
         panel.add(add_method);
         add_method.addActionListener(e -> {
             String method = new_method.getText();
-            new_method.setText("");
-            if (method.equals("")){
-                System.out.println("invalid entry of field");
-            }
-            else{
-                //validate with split??
+            if (SafeCheck.validMethod(method)){
+                new_method.setText("");
                 methods.add(method);
             }
         });
@@ -61,12 +65,8 @@ public class TemplateGUI {
         panel.add(add_methodAbstract);
         add_methodAbstract.addActionListener(e -> {
             String method = new_methodAbstract.getText();
-            new_methodAbstract.setText("");
-            if (method.equals("")){
-                System.out.println("invalid entry of field");
-            }
-            else{
-                //validate with split??
+            if (SafeCheck.validMethod(method)){
+                new_methodAbstract.setText("");
                 methodsAbstract.add(method);
             }
         });
@@ -78,12 +78,8 @@ public class TemplateGUI {
         panel.add(add_class);
         add_class.addActionListener(e -> {
             String Class = new_class.getText();
-            new_class.setText("");
-            if (Class.equals("")){
-                System.out.println("invalid entry of field");
-            }
-            else{
-                //validate with split??
+            if (SafeCheck.validName(Class)){
+                new_class.setText("");
                 classes.add(Class);
             }
         });
@@ -91,8 +87,16 @@ public class TemplateGUI {
         //Generate button
         panel.add(generate);
         generate.addActionListener(e -> {
-            //validate first!!!
-            MyToolWindow.designFactory.getDesign("Template");
+            //validate first
+            ArrayList<String> names = new ArrayList<>();
+            names.add(template_name.getText());
+
+            if (SafeCheck.validPackageName(packageName.getText()) && SafeCheck.validInterfacesAndClasses(names)) {
+                //disable fields ? ?
+                MyToolWindow.designFactory.getDesign("Template", packageName.getText());
+                //enable fields
+                //clear fields
+            }
         });
     }
 }

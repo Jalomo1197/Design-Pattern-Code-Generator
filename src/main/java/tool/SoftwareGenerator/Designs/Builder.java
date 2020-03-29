@@ -20,7 +20,6 @@ import java.util.Scanner;
 
 
 public class Builder implements DesignPattern {
-    public static int number = 0;
     static final Logger logger = Log.logger;
     private List<MethodDeclaration> planMethods;
     private ClassOrInterfaceDeclaration Builder_interface;

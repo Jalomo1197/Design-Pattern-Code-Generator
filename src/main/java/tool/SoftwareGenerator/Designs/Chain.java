@@ -40,6 +40,9 @@ public class Chain implements DesignPattern {
         handle.removeBody();
         System.out.println("Please enter the Class-type of the object that all concrete handlers should handle");
         String classType = ChainGUI.object_name.getText();
+
+        Chain.addClass(classType, Modifier.Keyword.PUBLIC);
+
         handle.addParameter(classType, "request");
 
         logger.trace("Message: Built the Handler Interface --> Interface: " + handlerName);

@@ -1,6 +1,7 @@
 package tool.SoftwareGenerator.DesignGUIs;
 
 import tool.MyToolWindow;
+import tool.SoftwareGenerator.SafeCheck;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 public class AbstractFactoryGUI {
     // GUI
     public static JPanel panel = new JPanel();
+    public static JTextField packageName = new JTextField();
     public static JTextField abstractFactory_name = new JTextField();
     private static JTextField new_field = new JTextField();
     private static JTextField new_method = new JTextField();
@@ -16,38 +18,37 @@ public class AbstractFactoryGUI {
     private static JButton add_method = new JButton("Add method");
     private static JButton generate = new JButton("Generate");
 
-    //For creation of compilation unit
+    // For the creation of compilation unit
     public static ArrayList<String> fields = new ArrayList<>();
     public static ArrayList<String> methods = new ArrayList<>();
 
 
+
     static{
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-        abstractFactory_name.setMaximumSize(new Dimension(600, 200));
-        new_field.setMaximumSize(new Dimension(600, 200));
-        new_method.setMaximumSize(new Dimension(600, 200));
+        abstractFactory_name.setMaximumSize(new Dimension(GUIconstrants.width, GUIconstrants.height));
+        new_field.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        new_method.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        packageName.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
 
+
+        panel.add(new JLabel("\nName of package:*\n")).setFont(new Font("Courier New", Font.ITALIC, 14));
+        panel.add(packageName);
 
 
         panel.add(new JLabel("\nName of the abstract factory interface:*\n")).setFont(new Font("Courier New", Font.ITALIC, 14));
         panel.add(abstractFactory_name);
 
 
-
-        //Adding Feilds
+        //Adding Fields
         panel.add(new JLabel("\nAdd fields to the abstract factory interface:")).setFont(new Font("Courier New", Font.ITALIC, 14));
         panel.add(new JLabel("\nClassType FieldName")).setFont(new Font("Courier New", Font.ITALIC, 14));
         panel.add(new_field);
         panel.add(add_field);
         add_field.addActionListener(e -> {
             String field = new_field.getText();
-            new_field.setText("");
-
-            if (field.equals("")){
-                System.out.println("invalid entry of field");
-            }
-            else{
-                //validate??
+            if (SafeCheck.validField(field)){
+                new_field.setText("");
                 fields.add(field);
             }
         });
@@ -60,12 +61,8 @@ public class AbstractFactoryGUI {
         panel.add(add_method);
         add_method.addActionListener(e -> {
             String method = new_method.getText();
-            new_method.setText("");
-            if (method.equals("")){
-                System.out.println("invalid entry of field");
-            }
-            else{
-                //validate with split??
+            if (SafeCheck.validMethod(method)){
+                new_method.setText("");
                 methods.add(method);
             }
         });
@@ -74,8 +71,11 @@ public class AbstractFactoryGUI {
         //Generate button
         panel.add(generate);
         generate.addActionListener(e -> {
-            //validate first!!!
-            MyToolWindow.designFactory.getDesign("Abstract Factory");
+            ArrayList<String> names = new ArrayList<>();
+            names.add(abstractFactory_name.getText());
+            if (SafeCheck.validPackageName(packageName.getText()) && SafeCheck.validInterfacesAndClasses(names)){
+                MyToolWindow.designFactory.getDesign("Abstract Factory", packageName.getText());
+            }
         });
     }
 }

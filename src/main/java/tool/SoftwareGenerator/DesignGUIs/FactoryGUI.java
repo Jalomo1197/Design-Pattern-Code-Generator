@@ -2,6 +2,7 @@ package tool.SoftwareGenerator.DesignGUIs;
 
 import com.intellij.openapi.ui.ComboBox;
 import tool.MyToolWindow;
+import tool.SoftwareGenerator.SafeCheck;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,15 +31,23 @@ public class FactoryGUI {
     private static ActionListener[] action = new ActionListener[2];
     private static  ActionListener currentActionListener;
 
+    //package
+    public static JTextField packageName = new JTextField();
+
     static{
         // ************ Setting sizes and layouts ***************
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-        factory_name.setMaximumSize(new Dimension(600, 200));
-        new_field.setMaximumSize(new Dimension(600, 200));
-        new_method.setMaximumSize(new Dimension(600, 200));
-        common_name.setMaximumSize(new Dimension(600, 200));
+        factory_name.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        new_field.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        new_method.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        common_name.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        packageName.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        EnhanceList.setMaximumSize(new Dimension(GUIconstrants.width, GUIconstrants.height));
 
         // ************ Getting names of related Classes/Interfaces ***************
+        panel.add(new JLabel("\nName of package:*\n")).setFont(new Font("Courier New", Font.ITALIC, 14));
+        panel.add(packageName);
+
         panel.add(new JLabel("Name of the factory class:")).setFont(new Font("Courier New", Font.ITALIC, 14));
         panel.add(factory_name);
 
@@ -55,13 +64,8 @@ public class FactoryGUI {
         panel.add(add_field);
         add_field.addActionListener(e -> {
             String field = new_field.getText();
-            new_field.setText("");
-
-            if (field.equals("")){
-                System.out.println("invalid entry of field");
-            }
-            else{
-                //validate??
+            if (SafeCheck.validField(field)){
+                new_field.setText("");
                 Factory_fields.add(field);
             }
         });
@@ -73,24 +77,16 @@ public class FactoryGUI {
 
         action[0] = e -> {
             String method = new_method.getText();
-            new_method.setText("");
-            if (method.equals("")){
-                System.out.println("invalid entry of field");
-            }
-            else{
-                //validate with split??
+            if (SafeCheck.validMethod(method)){
+                new_method.setText("");
                 Factory_methods.add(method);
             }
         };
 
         action[1] = e -> {
             String method = new_method.getText();
-            new_method.setText("");
-            if (method.equals("")){
-                System.out.println("invalid entry of field");
-            }
-            else{
-                //validate with split??
+            if (SafeCheck.validMethod(method)){
+                new_method.setText("");
                 Common_methods.add(method);
             }
         };
@@ -120,8 +116,17 @@ public class FactoryGUI {
         //**************************   Generate button   **************************
         panel.add(generate);
         generate.addActionListener(e -> {
-            //TODO: validate input before calling factory
-            MyToolWindow.designFactory.getDesign("Factory");
+            //validate first
+            ArrayList<String> names = new ArrayList<>();
+            names.add(factory_name.getText());
+            names.add(common_name.getText());
+
+            if (SafeCheck.validPackageName(packageName.getText()) && SafeCheck.validInterfacesAndClasses(names)) {
+                //disable fields ? ?
+                MyToolWindow.designFactory.getDesign("Factory", packageName.getText());
+                //enable fields
+                //clear fields
+            }
         });
         //*************************************************************************
     }

@@ -1,6 +1,7 @@
 package tool.SoftwareGenerator.DesignGUIs;
 
 import tool.MyToolWindow;
+import tool.SoftwareGenerator.SafeCheck;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,15 +21,20 @@ public class MediatorGUI {
     public static ArrayList<String> components = new ArrayList<>();
     public static ArrayList<String> methods = new ArrayList<>();
 
+    //package
+    public static JTextField packageName = new JTextField();
+
 
     static{
         // ************ Setting sizes and layouts ***************
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-        mediator_name.setMaximumSize(new Dimension(600, 200));
-        new_component.setMaximumSize(new Dimension(600, 200));
-        new_method.setMaximumSize(new Dimension(600, 200));
+        mediator_name.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        new_component.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        new_method.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        packageName.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
 
-
+        panel.add(new JLabel("\nName of package:*\n")).setFont(new Font("Courier New", Font.ITALIC, 14));
+        panel.add(packageName);
 
         panel.add(new JLabel("Name of the mediator class:")).setFont(new Font("Courier New", Font.ITALIC, 14));
         panel.add(mediator_name);
@@ -39,14 +45,11 @@ public class MediatorGUI {
         panel.add(new_component);
         panel.add(add_component);
 
+        // Class
         add_component.addActionListener(e -> {
             String component = new_component.getText();
-            new_component.setText("");
-            if (component.equals("")){
-                System.out.println("invalid entry of field");
-            }
-            else{
-                //validate with split??
+            if (SafeCheck.validName(component)){
+                new_component.setText("");
                 components.add(component);
             }
         });
@@ -55,8 +58,16 @@ public class MediatorGUI {
         //**************************   Generate button   **************************
         panel.add(generate);
         generate.addActionListener(e -> {
-            //TODO: validate input before calling factory
-            MyToolWindow.designFactory.getDesign("Mediator");
+            //validate first
+            ArrayList<String> names = new ArrayList<>();
+            names.add(mediator_name.getText());
+
+            if (SafeCheck.validPackageName(packageName.getText()) && SafeCheck.validInterfacesAndClasses(names)) {
+                //disable fields ? ?
+                MyToolWindow.designFactory.getDesign("Mediator", packageName.getText());
+                //enable fields
+                //clear fields
+            }
         });
         //*************************************************************************
     }

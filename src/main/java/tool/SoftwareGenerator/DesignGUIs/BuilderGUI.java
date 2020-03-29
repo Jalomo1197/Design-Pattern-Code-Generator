@@ -1,10 +1,8 @@
 package tool.SoftwareGenerator.DesignGUIs;
 
 import com.intellij.openapi.ui.ComboBox;
-import com.intellij.openapi.ui.VerticalFlowLayout;
-import com.intellij.ui.components.panels.VerticalLayout;
-import javafx.scene.layout.HBox;
 import tool.MyToolWindow;
+import tool.SoftwareGenerator.SafeCheck;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,19 +36,26 @@ public class BuilderGUI {
     private static  ActionListener currentActionListener;
 
 
+    //package
+    public static JTextField packageName = new JTextField();
+
     static{
         // ************ Setting sizes and layouts ***************
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-        builder_name.setMaximumSize(new Dimension(600, 200));
-        planner_name.setMaximumSize(new Dimension(600, 200));
-        object_name.setMaximumSize(new Dimension(600, 200));
-        director_name.setMaximumSize(new Dimension(600, 200));
-        new_field.setMaximumSize(new Dimension(600, 200));
-        new_method.setMaximumSize(new Dimension(600, 200));
-
+        builder_name.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        planner_name.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        object_name.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        director_name.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        new_field.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        new_method.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        packageName.setMaximumSize(new Dimension(GUIconstrants.width,  GUIconstrants.height));
+        EnhanceList.setMaximumSize(new Dimension(GUIconstrants.width - 300,GUIconstrants.height ));
 
 
         // ************ Getting names of related Classes/Interfaces ***************
+        panel.add(new JLabel("\nName of package:*\n")).setFont(new Font("Courier New", Font.ITALIC, 14));
+        panel.add(packageName);
+
         panel.add(new JLabel("Name of the builder interface:")).setFont(new Font("Courier New", Font.ITALIC, 14));
         panel.add(builder_name);
 
@@ -73,24 +78,16 @@ public class BuilderGUI {
 
         action[0] = e -> {
                             String method = new_method.getText();
-                            new_method.setText("");
-                            if (method.equals("")){
-                                System.out.println("invalid entry of field");
-                            }
-                            else{
-                                //validate with split??
+                            if (SafeCheck.validMethod(method)){
+                                new_method.setText("");
                                 Builder_methods.add(method);
                             }
                         };
 
         action[1] = e -> {
                             String method = new_method.getText();
-                            new_method.setText("");
-                            if (method.equals("")){
-                                System.out.println("invalid entry of field");
-                            }
-                            else{
-                                //validate with split??
+                            if (SafeCheck.validMethod(method)){
+                                new_method.setText("");
                                 Planner_methods.add(method);
                             }
                         };
@@ -125,13 +122,8 @@ public class BuilderGUI {
         panel.add(add_field);
         add_field.addActionListener(e -> {
             String field = new_field.getText();
-            new_field.setText("");
-
-            if (field.equals("")){
-                System.out.println("invalid entry of field");
-            }
-            else{
-                //validate??
+            if (SafeCheck.validField(field)){
+                new_field.setText("");
                 Object_fields.add(field);
             }
         });
@@ -140,8 +132,19 @@ public class BuilderGUI {
         //**************************   Generate button   **************************
         panel.add(generate);
         generate.addActionListener(e -> {
-            //TODO: validate input before calling factory
-            MyToolWindow.designFactory.getDesign("Builder");
+            //validate first
+            ArrayList<String> names = new ArrayList<>();
+            names.add(builder_name.getText());
+            names.add(planner_name.getText());
+            names.add(object_name.getText());
+            names.add(director_name.getText());
+
+            if (SafeCheck.validPackageName(packageName.getText()) && SafeCheck.validInterfacesAndClasses(names)){
+                //disable fields ? ?
+                MyToolWindow.designFactory.getDesign("Builder", packageName.getText());
+                //enable fields
+                //clear fields
+            }
         });
         //*************************************************************************
     }

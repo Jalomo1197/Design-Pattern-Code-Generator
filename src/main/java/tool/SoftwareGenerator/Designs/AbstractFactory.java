@@ -12,7 +12,6 @@ import tool.SoftwareGenerator.DesignGUIs.AbstractFactoryGUI;
 
 
 public class AbstractFactory implements DesignPattern {
-    public static int number = 0;
     private static Logger logger = Log.logger;
     private CompilationUnit abstractFactory;
 
@@ -37,8 +36,7 @@ public class AbstractFactory implements DesignPattern {
         MethodDeclaration create = factory.addMethod("create");
         create.setType("T");
         create.addParameter("String", "type");
-        String Notes =  "NOTE: Use T as generic type, since abstract factory interface declared --> " + factory.getNameAsString() +
-                        "\nNOTE: T create(String type) already included";
+        create.removeBody();
 
         //logger.trace("Message: Adding class methods to Abstract Factory interface --> " + interfaceName);
         EnhanceDesign.addCustomMethods(factory, AbstractFactoryGUI.methods, true);

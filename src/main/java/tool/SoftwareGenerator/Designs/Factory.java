@@ -12,7 +12,6 @@ import tool.SoftwareGenerator.Log;
 import java.util.List;
 
 public class Factory implements DesignPattern {
-    public static int number = 0;
     private CompilationUnit Factory;
     private ClassOrInterfaceDeclaration commonInterface;
     private ClassOrInterfaceDeclaration factoryClass;

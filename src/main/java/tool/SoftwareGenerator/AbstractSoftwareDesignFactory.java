@@ -1,5 +1,5 @@
 package tool.SoftwareGenerator;
 
 abstract class AbstractSoftwareDesignFactory<T> {
-    abstract T getDesign(String design);
+    abstract T getDesign(String design, String packageName);
 }
