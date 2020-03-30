@@ -20,14 +20,13 @@ the appropriate gradle commands.
 
 
 ## Gradle Dependencies:
-dependencies {
-
-testCompile group: 'junit', name: 'junit', version: '4.12'                                   //junit testing
-compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7+'                               //slf4j logback
-compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.+'                     //slf4j logback
-compile group: 'com.typesafe', name: 'config', version: '1.0.2'                              //slf4j logback
-compile group: 'com.github.javaparser',name:'javaparser-symbol-solver-core',version:'3.13.3' //javaparser
-}
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.12'                                   //junit testing
+        compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7+'                               //slf4j logback
+        compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.+'                     //slf4j logback
+        compile group: 'com.typesafe', name: 'config', version: '1.0.2'                              //slf4j logback
+        compile group: 'com.github.javaparser',name:'javaparser-symbol-solver-core',version:'3.13.3' //javaparser
+    }
 
 
 ## JavaParser Library
